@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf61kg685sdxi"]
+
+[ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="1_q5gmt"]
+[ext_resource type="Script" path="res://src/exit.gd" id="1_rqrwk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ee43"]
+
+[node name="Exit" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_rqrwk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5gmt")
+hframes = 20
+vframes = 9
+frame = 150
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4ee43")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

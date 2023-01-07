@@ -1,6 +1,8 @@
 extends TileMap
 
 
+@export var nextLevel: PackedScene
+
 func _init():
 	Global.tileMap = self
 
@@ -19,7 +21,13 @@ func calculate_bounds():
 	# apply transform
 	return Rect2(cell_to_pixel * cell_bounds.position, cell_to_pixel * cell_bounds.size)
 
-func get_plant_spot(search_position, offset = Vector2i(0,0)):
-	search_position = map_to_local(local_to_map(search_position) + offset)
+func can_plant(search_position):
+	return get_cell_tile_data(0, local_to_map(search_position)).get_custom_data('Plantable')
 
-	return search_position
+func get_plant_spot(search_position, offset = Vector2i(0,0)):
+	return map_to_local(local_to_map(search_position) + offset)
+
+func next_level():
+	if nextLevel != null:
+		Global.hud.new_level()
+		get_tree().change_scene_to_packed(nextLevel)

@@ -12,6 +12,7 @@ var vine = preload("res://scenes/Vine.tscn")
 @onready var sprite = $Sprite
 @onready var plantSpot = $PlantSpot
 @onready var raycast = $RayCast2D
+@onready var bodyArea = $BodyArea
 
 var plants = {
 	Global.PLANT_TYPES.VINE: vine
@@ -21,22 +22,21 @@ var seeds = {}
 
 func _init():
 	Global.player = self
-	print(Global.player)
 
 func _process(delta):
 	if seeds.size() > 0:
 		plantSpot.visible = true
 
-		if is_on_floor():
+		if can_plant():
 			plantSpot.frame = 32
 		else:
-			plantSpot.frame = 31
+			plantSpot.frame = 71
 
 		plantSpot.global_position = Global.tileMap.get_plant_spot(raycast.get_collision_point(), Vector2i(0,0))
 	else:
 		plantSpot.visible = false
 
-	if Input.is_action_just_pressed("player_plant") and is_on_floor() and seeds[Global.hud.selected] > 0:
+	if Input.is_action_just_pressed("player_plant") and can_plant() and Global.hud.selected != null and seeds[Global.hud.selected] > 0:
 		var plant = plants[Global.hud.selected].instantiate()
 
 		Global.tileMap.add_child(plant)
@@ -44,24 +44,32 @@ func _process(delta):
 
 		seeds[Global.hud.selected] -= 1
 		
+func can_plant():
+	return is_on_floor() and Global.tileMap.can_plant(raycast.get_collision_point())
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("player_jump") and is_on_floor():
+	if Input.is_action_just_pressed("player_jump") and (is_on_floor() or is_on_climbable()):
 		velocity.y = JUMP_VELOCITY
 
+	if is_on_climbable():
+		var vertical_direction = Input.get_axis("player_up", "player_down")
+		if vertical_direction:
+			velocity.y = vertical_direction * SPEED
+
 	# Handle movement.
-	var direction = Input.get_axis("player_left", "player_right")
-	if direction:
-		if direction < 0:
+	var horizontal_direction = Input.get_axis("player_left", "player_right")
+	if horizontal_direction:
+		if horizontal_direction < 0:
 			sprite.flip_h = true
 		else:
 			sprite.flip_h = false
 
-		velocity.x = direction * SPEED
+		velocity.x = horizontal_direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -70,13 +78,28 @@ func _physics_process(delta):
 			animation.play("idle")
 		else:
 			animation.play("walk")
+
 	elif (velocity.y < 0):
 		animation.play("jump")
+
 	else:
 		animation.play("fall")
 
 	move_and_slide()
 
+func get_collision_layers():
+	var mask = 0
+	for _i in bodyArea.get_overlapping_areas():
+		if _i.get_class() == "Area2D":
+			mask |= _i.get_collision_layer()
+
+	return mask
+
+func is_flag(flag):
+	return get_collision_layers() & flag > 0
+
+func is_on_climbable():
+	return is_flag(Global.COLLISION_FLAGS.CLIMBABLE)
 
 func add_seed(plant_type):
 	if seeds.has(plant_type):

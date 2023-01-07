@@ -22,3 +22,8 @@ func _process(_delta):
 				counter.name = str(_i)
 				seedContainer.add_child(counter)
 				if selected == null: selected = _i
+
+
+func new_level():
+	for _i in seedContainer.get_children():
+		_i.queue_free()

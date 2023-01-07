@@ -27,6 +27,6 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_sjoc6")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 0.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

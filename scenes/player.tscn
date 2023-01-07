@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf6kvcrmkaat6"]
+[gd_scene load_steps=12 format=3 uid="uid://bf6kvcrmkaat6"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_6mpgr"]
 [ext_resource type="Texture2D" uid="uid://dassadnfos72s" path="res://assets/interfacePack_16x_packed.png" id="3_lbk2l"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42mf3"]
 size = Vector2(8, 10.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7tr7"]
+size = Vector2(8, 11)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j20mw"]
 load_path = "res://.godot/imported/tilemap_packed_transparent.png-8448b57bcbafbc69962e989bcd61d69d.ctex"
@@ -90,6 +93,14 @@ script = ExtResource("1_6mpgr")
 position = Vector2(0, 2.25)
 shape = SubResource("RectangleShape2D_42mf3")
 
+[node name="BodyArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 84
+
+[node name="BodyAreaCollision" type="CollisionShape2D" parent="BodyArea"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_j7tr7")
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 script = ExtResource("3_x6f3j")
@@ -112,7 +123,7 @@ libraries = {
 texture = ExtResource("3_lbk2l")
 hframes = 23
 vframes = 7
-frame = 31
+frame = 73
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 4)
