@@ -8,11 +8,6 @@ func _init():
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func calculate_bounds():
 	var cell_bounds = Rect2(get_used_rect())
 	# create transform
@@ -24,7 +19,7 @@ func calculate_bounds():
 	# apply transform
 	return Rect2(cell_to_pixel * cell_bounds.position, cell_to_pixel * cell_bounds.size)
 
-func get_plant_spot(position, offset = Vector2i(0,0)):
-	position = map_to_local(local_to_map(position) + offset)
+func get_plant_spot(search_position, offset = Vector2i(0,0)):
+	search_position = map_to_local(local_to_map(search_position) + offset)
 
-	return position
+	return search_position

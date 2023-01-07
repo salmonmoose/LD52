@@ -14,10 +14,11 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	for _i in Global.player.seeds:
-		if !seedContainer.has_node(str(_i)):
-			var counter = seedCounter.instantiate()
-			counter.name = str(_i)
-			seedContainer.add_child(counter)
-			if selected == null: selected = _i
+func _process(_delta):
+	if Global.player != null:
+		for _i in Global.player.seeds:
+			if !seedContainer.has_node(str(_i)):
+				var counter = seedCounter.instantiate()
+				counter.name = str(_i)
+				seedContainer.add_child(counter)
+				if selected == null: selected = _i

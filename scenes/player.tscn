@@ -1,11 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf6kvcrmkaat6"]
+[gd_scene load_steps=11 format=3 uid="uid://bf6kvcrmkaat6"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_6mpgr"]
 [ext_resource type="Texture2D" uid="uid://dassadnfos72s" path="res://assets/interfacePack_16x_packed.png" id="3_lbk2l"]
 [ext_resource type="Script" path="res://src/PlayerCamera.gd" id="3_x6f3j"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhg0u"]
-size = Vector2(8, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42mf3"]
 size = Vector2(8, 10.5)
@@ -88,15 +85,6 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6mpgr")
-
-[node name="BodyArea" type="Area2D" parent="."]
-texture_filter = 1
-position = Vector2(0, 2)
-collision_layer = 2
-collision_mask = 124
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
-shape = SubResource("RectangleShape2D_uhg0u")
 
 [node name="PlatformDetector" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.25)

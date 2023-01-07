@@ -1,6 +1,5 @@
 extends Camera2D
 
-
 func _init():
 	Global.camera = self
 
@@ -14,7 +13,3 @@ func _ready():
 	self.limit_top = bounds.position.y
 	self.limit_bottom = bounds.end.y
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

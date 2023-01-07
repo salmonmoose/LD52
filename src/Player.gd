@@ -12,7 +12,6 @@ var vine = preload("res://scenes/Vine.tscn")
 @onready var sprite = $Sprite
 @onready var plantSpot = $PlantSpot
 @onready var raycast = $RayCast2D
-@onready var bodyArea = $BodyArea
 
 var plants = {
 	Global.PLANT_TYPES.VINE: vine
@@ -22,10 +21,12 @@ var seeds = {}
 
 func _init():
 	Global.player = self
+	print(Global.player)
 
 func _process(delta):
 	if seeds.size() > 0:
 		plantSpot.visible = true
+
 		if is_on_floor():
 			plantSpot.frame = 32
 		else:
@@ -64,9 +65,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	var direction = Input.get_axis("player_up", "player_down"):
-
-
 	if (velocity.y == 0):
 		if (abs(velocity.x) < SPEED / 10):
 			animation.play("idle")
@@ -79,8 +77,6 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-#	for body in bodyArea.get_overlapping_bodies():
-#		print(body)
 
 func add_seed(plant_type):
 	if seeds.has(plant_type):

@@ -12,7 +12,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	icon.frame = Global.plant_type_to_frame(name)
 	countSprite.frame_coords = Global.count_to_frame_coords(name)
 	
