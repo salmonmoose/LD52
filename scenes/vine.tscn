@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dppb5dhwiim2x"]
+
+[ext_resource type="Script" path="res://src/Vine.gd" id="1_jr7ns"]
+[ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_7xwxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjoc6"]
+size = Vector2(10, 18)
+
+[node name="Vine" type="Node2D"]
+script = ExtResource("1_jr7ns")
+
+[node name="Parts" type="Node2D" parent="."]
+
+[node name="VinePart" type="Sprite2D" parent="Parts"]
+z_index = 5
+z_as_relative = false
+texture = ExtResource("2_7xwxd")
+hframes = 20
+vframes = 9
+frame = 144
+
+[node name="Area2D" type="Area2D" parent="Parts/VinePart"]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/VinePart/Area2D"]
+shape = SubResource("RectangleShape2D_sjoc6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

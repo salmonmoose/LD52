@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2ma45e43mdin"]
+
+[ext_resource type="Script" path="res://src/HUD.gd" id="1_xhhfu"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_xhhfu")
+
+[node name="SeedContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1

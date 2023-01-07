@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2225xainr3pw"]
+
+[ext_resource type="Script" path="res://src/Seed.gd" id="1_djhbm"]
+[ext_resource type="Texture2D" uid="uid://c7xq67bkecw6d" path="res://assets/tiles_packed.png" id="1_sk4cr"]
+
+[sub_resource type="Animation" id="Animation_yel53"]
+resource_name = "seed_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.9, 1.3, 1.6),
+"transitions": PackedFloat32Array(1, 0.148651, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.75), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.3),
+"transitions": PackedFloat32Array(1, 6.72717, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxmhs"]
+_data = {
+"seed_animation": SubResource("Animation_yel53")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0yg0"]
+radius = 5.0
+height = 14.0
+
+[node name="Seed" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_djhbm")
+plant_type = 0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.998706)
+texture = ExtResource("1_sk4cr")
+hframes = 20
+vframes = 9
+frame = 67
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_wxmhs")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_h0yg0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
