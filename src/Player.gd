@@ -6,8 +6,8 @@ const JUMP_VELOCITY = -180.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var vine = preload("res://scenes/Vine.tscn")
-var mushroom = preload("res://scenes/Mushroom.tscn")
+var vine = preload("res://scenes/vine.tscn")
+var mushroom = preload("res://scenes/mushroom.tscn")
 var climbing = false
 
 @onready var animation = $Animation
@@ -43,7 +43,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("player_plant") and can_plant() and Global.hud.selected != null and seeds[Global.hud.selected] > 0:
 		var plant = plants[Global.hud.selected].instantiate()
 
-		Global.tileMap.add_child(plant)
+		Global.tileMap.add_plant(plant)
 		plant.global_position = Global.tileMap.get_plant_spot(raycast.get_collision_point(), Vector2i(0,-1))
 
 		seeds[Global.hud.selected] -= 1

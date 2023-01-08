@@ -8,7 +8,7 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var background = Node2D.new()
 
 func calculate_bounds():
 	var cell_bounds = Rect2(get_used_rect())
@@ -22,7 +22,11 @@ func calculate_bounds():
 	return Rect2(cell_to_pixel * cell_bounds.position, cell_to_pixel * cell_bounds.size)
 
 func can_plant(search_position):
-	return get_cell_tile_data(0, local_to_map(search_position)).get_custom_data('Plantable')
+	var tileData = get_cell_tile_data(0, local_to_map(search_position))
+	if tileData == null:
+		return false
+
+	return tileData.get_custom_data('Plantable')
 
 func get_plant_spot(search_position, offset = Vector2i(0,0)):
 	return map_to_local(local_to_map(search_position) + offset)
@@ -34,4 +38,9 @@ func next_level():
 
 func _process(_delta):
 	if Input.is_action_just_pressed('reload'):
+		Global.hud.new_level()
 		get_tree().reload_current_scene()
+
+func add_plant(plant):
+	get_parent().add_child(plant)
+	get_parent().move_child(plant, 0)

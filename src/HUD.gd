@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var seedContainer = $SeedContainer
 @onready var audioPlayer = $AudioPlayer
 
-var seedCounter = preload("res://scenes/SeedCounter.tscn")
+var seedCounter = preload("res://scenes/seed_counter.tscn")
 # Called when the node enters the scene tree for the first time.
 
 var selected = null

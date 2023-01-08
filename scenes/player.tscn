@@ -15,6 +15,37 @@ size = Vector2(8, 11)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j20mw"]
 load_path = "res://.godot/imported/tilemap_packed_transparent.png-8448b57bcbafbc69962e989bcd61d69d.ctex"
 
+[sub_resource type="Animation" id="Animation_fnucs"]
+resource_name = "climb"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [43, 42]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_6n6j8")
+}],
+"times": PackedFloat32Array(0.3)
+}
+
 [sub_resource type="Animation" id="Animation_duoh3"]
 resource_name = "fall"
 tracks/0/type = "value"
@@ -104,37 +135,6 @@ tracks/1/keys = {
 "stream": ExtResource("3_6n6j8")
 }],
 "times": PackedFloat32Array(0.2)
-}
-
-[sub_resource type="Animation" id="Animation_fnucs"]
-resource_name = "climb"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [43, 42]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AudioPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("3_6n6j8")
-}],
-"times": PackedFloat32Array(0.3)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xvsj3"]
