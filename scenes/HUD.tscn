@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" path="res://src/HUD.gd" id="1_xhhfu"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="Node2D" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("1_xhhfu")
 
-[node name="SeedContainer" type="HBoxContainer" parent="."]
+[node name="SeedContainer" type="HBoxContainer" parent="HUD"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 24.0
@@ -14,4 +16,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="HUD"]

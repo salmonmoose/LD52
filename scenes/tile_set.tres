@@ -1,10 +1,16 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://cpljakq8laayg"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://cpljakq8laayg"]
 
 [ext_resource type="Texture2D" uid="uid://c7xq67bkecw6d" path="res://assets/tiles_packed.png" id="1_qvqsk"]
 [ext_resource type="PackedScene" uid="uid://d2225xainr3pw" path="res://scenes/vine_seed.tscn" id="2_vwqfj"]
 [ext_resource type="PackedScene" uid="uid://ba0jeyb6lcdad" path="res://scenes/mushroom_seed.tscn" id="2_wl3hl"]
 [ext_resource type="PackedScene" uid="uid://bf6kvcrmkaat6" path="res://scenes/player.tscn" id="3_stvrg"]
 [ext_resource type="PackedScene" uid="uid://bf61kg685sdxi" path="res://scenes/exit.tscn" id="4_kpwna"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_klw8o"]
+tile_data = PackedInt32Array(0, 917504, 0, 1, 786432, 0, 65537, 786432, 2, 131073, 786432, 3, 2, 983040, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2r3fy"]
+tile_data = PackedInt32Array(0, 262144, 6, 65536, 327680, 7, 131072, 327680, 7, 196608, 327680, 7)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wfoo2"]
 texture = ExtResource("1_qvqsk")
@@ -611,3 +617,5 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_wfoo2")
 sources/1 = SubResource("TileSetScenesCollectionSource_0qmw1")
 sources/2 = SubResource("TileSetScenesCollectionSource_0kn5y")
+pattern_0 = SubResource("TileMapPattern_klw8o")
+pattern_1 = SubResource("TileMapPattern_2r3fy")

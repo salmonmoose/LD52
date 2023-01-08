@@ -4,16 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_cd3df"]
 [ext_resource type="AudioStream" uid="uid://d07ugp2aygpn4" path="res://sounds/hitHurt.wav" id="3_7ilb7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_88dce"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mv3n"]
 size = Vector2(18, 18)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi1tc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqpgt"]
 size = Vector2(18, 18)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_isoqh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgvb6"]
 size = Vector2(18, 18)
 
-[sub_resource type="Animation" id="Animation_coixd"]
+[sub_resource type="Animation" id="Animation_gwlks"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -3)]
+"values": [Vector2(0, 18)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-18, -36)]
+"values": [Vector2(0, 18)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(18, -36)]
+"values": [Vector2(0, 18)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -61,7 +61,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -18)]
+"values": [Vector2(0, 18)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -76,7 +76,7 @@ tracks/4/keys = {
 "values": [Vector2(0, 18)]
 }
 
-[sub_resource type="Animation" id="Animation_hcymu"]
+[sub_resource type="Animation" id="Animation_a1i26"]
 resource_name = "grow"
 length = 4.0
 tracks/0/type = "value"
@@ -140,10 +140,10 @@ tracks/4/keys = {
 "values": [Vector2(0, 18), Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hym7"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_735wr"]
 _data = {
-"RESET": SubResource("Animation_coixd"),
-"grow": SubResource("Animation_hcymu")
+"RESET": SubResource("Animation_gwlks"),
+"grow": SubResource("Animation_a1i26")
 }
 
 [node name="Mushroom" type="Node2D"]
@@ -162,14 +162,14 @@ vframes = 9
 frame = 72
 
 [node name="MushroomStalk" type="Sprite2D" parent="Parts"]
-position = Vector2(0, -18)
+position = Vector2(0, 18)
 texture = ExtResource("2_cd3df")
 hframes = 20
 vframes = 9
 frame = 52
 
 [node name="MushroomTopLeft" type="Sprite2D" parent="Parts"]
-position = Vector2(-18, -36)
+position = Vector2(0, 18)
 texture = ExtResource("2_cd3df")
 hframes = 20
 vframes = 9
@@ -180,10 +180,10 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/MushroomTopLeft/StaticBody2D"]
 visible = false
-shape = SubResource("RectangleShape2D_88dce")
+shape = SubResource("RectangleShape2D_4mv3n")
 
 [node name="MushroomTopRight" type="Sprite2D" parent="Parts"]
-position = Vector2(18, -36)
+position = Vector2(0, 18)
 texture = ExtResource("2_cd3df")
 hframes = 20
 vframes = 9
@@ -194,10 +194,10 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/MushroomTopRight/StaticBody2D"]
 visible = false
-shape = SubResource("RectangleShape2D_pi1tc")
+shape = SubResource("RectangleShape2D_jqpgt")
 
 [node name="MushroomTopCenter" type="Sprite2D" parent="Parts"]
-position = Vector2(0, -3)
+position = Vector2(0, 18)
 texture = ExtResource("2_cd3df")
 hframes = 20
 vframes = 9
@@ -208,7 +208,7 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/MushroomTopCenter/StaticBody2D"]
 visible = false
-shape = SubResource("RectangleShape2D_isoqh")
+shape = SubResource("RectangleShape2D_hgvb6")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -219,7 +219,7 @@ stream = ExtResource("3_7ilb7")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Parts")
 libraries = {
-"": SubResource("AnimationLibrary_8hym7")
+"": SubResource("AnimationLibrary_735wr")
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

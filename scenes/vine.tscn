@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dppb5dhwiim2x"]
+[gd_scene load_steps=9 format=3 uid="uid://dppb5dhwiim2x"]
 
 [ext_resource type="Script" path="res://src/Vine.gd" id="1_jr7ns"]
 [ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_7xwxd"]
 [ext_resource type="AudioStream" uid="uid://d07ugp2aygpn4" path="res://sounds/hitHurt.wav" id="3_tnomp"]
 
-[sub_resource type="Animation" id="Animation_yc2r4"]
+[sub_resource type="Animation" id="Animation_x4gah"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -54)]
+"values": [Vector2(0, 18)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -28,7 +28,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -36)]
+"values": [Vector2(0, 18)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -40,7 +40,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -18)]
+"values": [Vector2(0, 18)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -52,7 +52,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 18)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -90,8 +90,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(0, 18)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area2D/CollisionShape2D4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 18)]
+}
 
-[sub_resource type="Animation" id="Animation_3mykd"]
+[sub_resource type="Animation" id="Animation_1ud8s"]
 resource_name = "grow"
 length = 4.0
 tracks/0/type = "value"
@@ -178,15 +190,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(0, 18), Vector2(0, -36)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_em0py"]
-_data = {
-"RESET": SubResource("Animation_yc2r4"),
-"grow": SubResource("Animation_3mykd")
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area2D/CollisionShape2D4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 18), Vector2(0, -50)]
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ea4cm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aveij"]
+_data = {
+"RESET": SubResource("Animation_x4gah"),
+"grow": SubResource("Animation_1ud8s")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uxo1"]
 size = Vector2(12, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqjpf"]
+size = Vector2(12, 10)
 
 [node name="Vine" type="Node2D"]
 show_behind_parent = true
@@ -197,13 +224,14 @@ script = ExtResource("1_jr7ns")
 [node name="Parts" type="Node2D" parent="."]
 
 [node name="VineStalk" type="Sprite2D" parent="Parts"]
+position = Vector2(0, 18)
 texture = ExtResource("2_7xwxd")
 hframes = 20
 vframes = 9
 frame = 145
 
 [node name="VineStalk2" type="Sprite2D" parent="Parts"]
-position = Vector2(0, -18)
+position = Vector2(0, 18)
 texture = ExtResource("2_7xwxd")
 hframes = 20
 vframes = 9
@@ -211,14 +239,14 @@ frame = 145
 
 [node name="VineStalk3" type="Sprite2D" parent="Parts"]
 z_index = 5
-position = Vector2(0, -36)
+position = Vector2(0, 18)
 texture = ExtResource("2_7xwxd")
 hframes = 20
 vframes = 9
 frame = 145
 
 [node name="VineTop" type="Sprite2D" parent="Parts"]
-position = Vector2(0, -54)
+position = Vector2(0, 18)
 texture = ExtResource("2_7xwxd")
 hframes = 20
 vframes = 9
@@ -229,7 +257,7 @@ stream = ExtResource("3_tnomp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_em0py")
+"": SubResource("AnimationLibrary_aveij")
 }
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -238,12 +266,16 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_ea4cm")
+shape = SubResource("RectangleShape2D_0uxo1")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_ea4cm")
+shape = SubResource("RectangleShape2D_0uxo1")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_ea4cm")
+shape = SubResource("RectangleShape2D_0uxo1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_vqjpf")
