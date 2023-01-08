@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf61kg685sdxi"]
+[gd_scene load_steps=5 format=3 uid="uid://bf61kg685sdxi"]
 
 [ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="1_q5gmt"]
 [ext_resource type="Script" path="res://src/exit.gd" id="1_rqrwk"]
+[ext_resource type="AudioStream" uid="uid://dmy30npy25h5e" path="res://sounds/door.wav" id="2_scwsi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ee43"]
 
@@ -9,6 +10,7 @@
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_rqrwk")
+audioStream = ExtResource("2_scwsi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q5gmt")

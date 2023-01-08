@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf6kvcrmkaat6"]
+[gd_scene load_steps=15 format=3 uid="uid://bf6kvcrmkaat6"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_6mpgr"]
+[ext_resource type="AudioStream" uid="uid://bxst55y44n3lj" path="res://sounds/step.wav" id="3_6n6j8"]
+[ext_resource type="AudioStream" uid="uid://vdxtx3pnwg53" path="res://sounds/jump.wav" id="3_8gdtl"]
 [ext_resource type="Texture2D" uid="uid://dassadnfos72s" path="res://assets/interfacePack_16x_packed.png" id="3_lbk2l"]
 [ext_resource type="Script" path="res://src/PlayerCamera.gd" id="3_x6f3j"]
 
@@ -58,6 +60,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [46]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_8gdtl")
+}],
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_1l0p0"]
 resource_name = "walk"
@@ -75,9 +91,55 @@ tracks/0/keys = {
 "update": 1,
 "values": [46, 45]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_6n6j8")
+}],
+"times": PackedFloat32Array(0.2)
+}
+
+[sub_resource type="Animation" id="Animation_fnucs"]
+resource_name = "climb"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [43, 42]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_6n6j8")
+}],
+"times": PackedFloat32Array(0.3)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xvsj3"]
 _data = {
+"climb": SubResource("Animation_fnucs"),
 "fall": SubResource("Animation_duoh3"),
 "idle": SubResource("Animation_uqxy4"),
 "jump": SubResource("Animation_3g7np"),
@@ -111,7 +173,7 @@ z_as_relative = false
 texture = SubResource("CompressedTexture2D_j20mw")
 hframes = 10
 vframes = 6
-frame = 45
+frame = 42
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -127,3 +189,6 @@ frame = 73
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 4)
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6n6j8")

@@ -19,7 +19,7 @@ var plantTypes = {
 
 var plantIcons = {
 	PLANT_TYPES.VINE: 67,
-	PLANT_TYPES.MUSHROOM: 0,
+	PLANT_TYPES.MUSHROOM: 128,
 	PLANT_TYPES.TREE: 0,
 }
 
@@ -34,9 +34,11 @@ var COLLISION_FLAGS = {} :
 
 		return flags
 
+func is_active_plant(plant_type):
+	return int(str(plant_type)) == hud.selected
+
 func plant_type_to_frame(plant_type):
 	return Global.plantIcons[int(str(plant_type))]
-
 
 func count_to_frame_coords(plant_type):
 	var count = 0

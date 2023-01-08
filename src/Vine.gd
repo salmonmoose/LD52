@@ -9,6 +9,7 @@ var frames = [
 
 @onready var parts = $Parts
 @onready var timer = $Timer
+@onready var audioPlayer = $AudioPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +29,7 @@ func grow():
 
 			if index < frames.size() - 1:
 				_i.frame = frames[index + 1]
+				audioPlayer.play()
 				if _i.frame == 145:
 					var plant = _i.duplicate()
 					parts.add_child(plant)

@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dppb5dhwiim2x"]
+[gd_scene load_steps=5 format=3 uid="uid://c03wjb1k31gbn"]
 
-[ext_resource type="Script" path="res://src/Vine.gd" id="1_jr7ns"]
-[ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_7xwxd"]
-[ext_resource type="AudioStream" uid="uid://d07ugp2aygpn4" path="res://sounds/hitHurt.wav" id="3_tnomp"]
+[ext_resource type="Script" path="res://src/Vine.gd" id="1_ehhyb"]
+[ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_01ti5"]
+[ext_resource type="AudioStream" uid="uid://d07ugp2aygpn4" path="res://sounds/hitHurt.wav" id="3_u0fo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjoc6"]
 size = Vector2(10, 18)
 
 [node name="Vine" type="Node2D"]
-script = ExtResource("1_jr7ns")
+script = ExtResource("1_ehhyb")
 
 [node name="Parts" type="Node2D" parent="."]
 
 [node name="VinePart" type="Sprite2D" parent="Parts"]
 z_index = 5
 z_as_relative = false
-texture = ExtResource("2_7xwxd")
+texture = ExtResource("2_01ti5")
 hframes = 20
 vframes = 9
 frame = 144
@@ -31,6 +31,6 @@ shape = SubResource("RectangleShape2D_sjoc6")
 wait_time = 0.5
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_tnomp")
+stream = ExtResource("3_u0fo0")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

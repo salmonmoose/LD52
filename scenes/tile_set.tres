@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://cpljakq8laayg"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://cpljakq8laayg"]
 
 [ext_resource type="Texture2D" uid="uid://c7xq67bkecw6d" path="res://assets/tiles_packed.png" id="1_qvqsk"]
 [ext_resource type="PackedScene" uid="uid://d2225xainr3pw" path="res://scenes/vine_seed.tscn" id="2_vwqfj"]
+[ext_resource type="PackedScene" uid="uid://ba0jeyb6lcdad" path="res://scenes/mushroom_seed.tscn" id="2_wl3hl"]
 [ext_resource type="PackedScene" uid="uid://bf6kvcrmkaat6" path="res://scenes/player.tscn" id="3_stvrg"]
 [ext_resource type="PackedScene" uid="uid://bf61kg685sdxi" path="res://scenes/exit.tscn" id="4_kpwna"]
 
@@ -595,6 +596,7 @@ texture_region_size = Vector2i(18, 18)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0qmw1"]
 resource_name = "Pickups"
+scenes/1/scene = ExtResource("2_wl3hl")
 scenes/2/scene = ExtResource("2_vwqfj")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0kn5y"]

@@ -7,15 +7,19 @@ const JUMP_VELOCITY = -180.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var vine = preload("res://scenes/Vine.tscn")
+var mushroom = preload("res://scenes/Mushroom.tscn")
+var climbing = false
 
 @onready var animation = $Animation
 @onready var sprite = $Sprite
 @onready var plantSpot = $PlantSpot
 @onready var raycast = $RayCast2D
 @onready var bodyArea = $BodyArea
+@onready var audioPlayer = $AudioPlayer
 
 var plants = {
-	Global.PLANT_TYPES.VINE: vine
+	Global.PLANT_TYPES.VINE: vine,
+	Global.PLANT_TYPES.MUSHROOM: mushroom,
 }
 
 var seeds = {}
@@ -48,18 +52,26 @@ func can_plant():
 	return is_on_floor() and Global.tileMap.can_plant(raycast.get_collision_point())
 
 func _physics_process(delta):
+	if not is_on_climbable():
+		climbing = false
+
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not climbing:
 		velocity.y += gravity * delta
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("player_jump") and (is_on_floor() or is_on_climbable()):
+		climbing = false
 		velocity.y = JUMP_VELOCITY
 
 	if is_on_climbable():
 		var vertical_direction = Input.get_axis("player_up", "player_down")
 		if vertical_direction:
+			climbing = true
 			velocity.y = vertical_direction * SPEED
+		elif climbing:
+			velocity.y = move_toward(velocity.y, 0, SPEED)
+		
 
 	# Handle movement.
 	var horizontal_direction = Input.get_axis("player_left", "player_right")
@@ -78,6 +90,9 @@ func _physics_process(delta):
 			animation.play("idle")
 		else:
 			animation.play("walk")
+
+	elif is_on_climbable():
+		animation.play("climb")
 
 	elif (velocity.y < 0):
 		animation.play("jump")
