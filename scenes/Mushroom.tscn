@@ -4,16 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_cd3df"]
 [ext_resource type="AudioStream" uid="uid://d07ugp2aygpn4" path="res://sounds/hitHurt.wav" id="3_7ilb7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mv3n"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rueli"]
 size = Vector2(18, 18)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqpgt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn8h0"]
 size = Vector2(18, 18)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgvb6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjdvs"]
 size = Vector2(18, 18)
 
-[sub_resource type="Animation" id="Animation_gwlks"]
+[sub_resource type="Animation" id="Animation_eqk8a"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,7 +76,7 @@ tracks/4/keys = {
 "values": [Vector2(0, 18)]
 }
 
-[sub_resource type="Animation" id="Animation_a1i26"]
+[sub_resource type="Animation" id="Animation_ury8j"]
 resource_name = "grow"
 length = 4.0
 tracks/0/type = "value"
@@ -140,10 +140,10 @@ tracks/4/keys = {
 "values": [Vector2(0, 18), Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_735wr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xfnc0"]
 _data = {
-"RESET": SubResource("Animation_gwlks"),
-"grow": SubResource("Animation_a1i26")
+"RESET": SubResource("Animation_eqk8a"),
+"grow": SubResource("Animation_ury8j")
 }
 
 [node name="Mushroom" type="Node2D"]
@@ -180,7 +180,7 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/MushroomTopLeft/StaticBody2D"]
 visible = false
-shape = SubResource("RectangleShape2D_4mv3n")
+shape = SubResource("RectangleShape2D_rueli")
 
 [node name="MushroomTopRight" type="Sprite2D" parent="Parts"]
 position = Vector2(0, 18)
@@ -194,7 +194,7 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/MushroomTopRight/StaticBody2D"]
 visible = false
-shape = SubResource("RectangleShape2D_jqpgt")
+shape = SubResource("RectangleShape2D_cn8h0")
 
 [node name="MushroomTopCenter" type="Sprite2D" parent="Parts"]
 position = Vector2(0, 18)
@@ -208,7 +208,7 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parts/MushroomTopCenter/StaticBody2D"]
 visible = false
-shape = SubResource("RectangleShape2D_hgvb6")
+shape = SubResource("RectangleShape2D_sjdvs")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -219,7 +219,7 @@ stream = ExtResource("3_7ilb7")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Parts")
 libraries = {
-"": SubResource("AnimationLibrary_735wr")
+"": SubResource("AnimationLibrary_xfnc0")
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

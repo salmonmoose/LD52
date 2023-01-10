@@ -170,27 +170,26 @@ shape = SubResource("RectangleShape2D_j7tr7")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(320, 0)
+motion_mirroring = Vector2(240, 0)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="ParallaxBackground/ParallaxLayer"]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer/CanvasGroup"]
-custom_minimum_size = Vector2(320, 0)
 offset_top = -260.0
-offset_right = 320.0
+offset_right = 240.0
 offset_bottom = 60.0
 texture = ExtResource("3_ap2rp")
 
 [node name="TextureRect2" type="TextureRect" parent="ParallaxBackground/ParallaxLayer/CanvasGroup"]
 offset_top = 60.0
-offset_right = 320.0
+offset_right = 240.0
 offset_bottom = 84.0
 texture = ExtResource("4_wlu51")
 stretch_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="ParallaxBackground/ParallaxLayer/CanvasGroup"]
 offset_top = 84.0
-offset_right = 320.0
+offset_right = 240.0
 offset_bottom = 404.0
 texture = ExtResource("5_vyvu1")
 

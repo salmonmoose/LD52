@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://db4tnwp86nkm7" path="res://tile_set.tres" id="2_7xwxd"]
 [ext_resource type="AudioStream" uid="uid://d07ugp2aygpn4" path="res://sounds/hitHurt.wav" id="3_tnomp"]
 
-[sub_resource type="Animation" id="Animation_x4gah"]
+[sub_resource type="Animation" id="Animation_ghgio"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -103,7 +103,7 @@ tracks/7/keys = {
 "values": [Vector2(0, 18)]
 }
 
-[sub_resource type="Animation" id="Animation_1ud8s"]
+[sub_resource type="Animation" id="Animation_dhk3d"]
 resource_name = "grow"
 length = 4.0
 tracks/0/type = "value"
@@ -203,16 +203,16 @@ tracks/7/keys = {
 "values": [Vector2(0, 18), Vector2(0, -50)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_aveij"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2qtqm"]
 _data = {
-"RESET": SubResource("Animation_x4gah"),
-"grow": SubResource("Animation_1ud8s")
+"RESET": SubResource("Animation_ghgio"),
+"grow": SubResource("Animation_dhk3d")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uxo1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u32e7"]
 size = Vector2(12, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqjpf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rvrg"]
 size = Vector2(12, 10)
 
 [node name="Vine" type="Node2D"]
@@ -257,7 +257,7 @@ stream = ExtResource("3_tnomp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_aveij")
+"": SubResource("AnimationLibrary_2qtqm")
 }
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -266,16 +266,16 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_0uxo1")
+shape = SubResource("RectangleShape2D_u32e7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_0uxo1")
+shape = SubResource("RectangleShape2D_u32e7")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_0uxo1")
+shape = SubResource("RectangleShape2D_u32e7")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_vqjpf")
+shape = SubResource("RectangleShape2D_4rvrg")
